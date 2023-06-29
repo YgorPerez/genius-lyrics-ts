@@ -1,0 +1,32 @@
+{
+  "name": "genius-lyrics-ts",
+  "version": "0.0.1",
+  "description": "Get lyrics from genius with Typescript, Javascript, or Node",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "lint": "tsc"
+  },
+  "keywords": [
+    "lyrics-api",
+    "lyrics-ts",
+    "lyrics-searcher",
+    "lyrics-finder",
+    "edge-runtime",
+    "javascript",
+    "typescript",
+    "lyrics"
+  ],
+  "author": "Ygor Perez de Oliveira",
+  "license": "MIT",
+  "devDependencies": {
+    "@changesets/cli": "^2.26.2",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "cheerio": "1.0.0-rc.12"
+  }
+}
