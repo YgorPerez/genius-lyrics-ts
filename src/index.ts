@@ -9,9 +9,9 @@ import searchSong from "./utils/searchSong";
 async function getLyrics(arg: Options) {
   try {
     checkOptions(arg);
-    let results = await searchSong(arg);
-    if (!results) return null;
-    let lyrics = await extractsLyrics(results[0].url);
+    let result = await searchSong(arg);
+    if (!result) return null;
+    let lyrics = await extractsLyrics(result.url);
     return lyrics;
   } catch (e) {
     throw e;

@@ -5,8 +5,8 @@ import * as cheerio from "cheerio";
  */
 async function extractsLyrics(url: string) {
   try {
-    let response = await fetch(url, { method: "GET" });
-    const data = (await response.json()) as string;
+    let response = await fetch(url);
+    const data = await response.text();
     const $ = cheerio.load(data);
     let lyrics: string = $('div[class="lyrics"]').text().trim();
     if (!lyrics) {

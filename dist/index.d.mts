@@ -1,8 +1,8 @@
 type Options = {
     apiKey: string;
-    title: string;
-    artist: string;
-    optimizeQuery: boolean;
+    title?: string;
+    artist?: string;
+    optimizeQuery?: boolean;
 };
 
 /**
