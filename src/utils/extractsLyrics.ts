@@ -6,7 +6,10 @@ async function extractsLyrics(url: string) {
   try {
     let response = await fetch(url);
     const html = await response.text();
-    const htmlDocument = new JSDOM(html).window.document;
+    const htmlDocument =
+      typeof window != "undefined" && window.document
+        ? new JSDOM(html).window.document
+        : new DOMParser().parseFromString(html, "text/html");
 
     let lyrics = htmlDocument
       .querySelector('div[class="lyrics"]')
