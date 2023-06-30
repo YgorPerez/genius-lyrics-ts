@@ -1,4 +1,7 @@
-import { JSDOM } from "jsdom";
+let jsdom: any;
+if (typeof window != "undefined" && window.document) {
+  async () => (jsdom = (await import("jsdom")).JSDOM);
+}
 /**
  * @param {string} url - Genius URL
  */
@@ -9,7 +12,7 @@ async function extractsLyrics(url: string) {
     const htmlDocument =
       typeof window != "undefined" && window.document
         ? new DOMParser().parseFromString(html, "text/html")
-        : new JSDOM(html).window.document;
+        : new jsdom(html).window.document;
 
     let lyrics = htmlDocument
       .querySelector('div[class="lyrics"]')
@@ -19,7 +22,7 @@ async function extractsLyrics(url: string) {
       lyrics = "";
       htmlDocument
         .querySelectorAll('div[class^="Lyrics__Container"]')
-        .forEach((elem) => {
+        .forEach((elem: Element) => {
           if (elem && elem.textContent?.length !== 0) {
             let snippet = elem.textContent
               ?.replace(/<br>/g, "\n")
