@@ -4,6 +4,8 @@ export type Options = {
   artist?: string;
   optimizeQuery?: boolean;
 };
+export const isServer = () =>
+  !(typeof window != "undefined" && window.document);
 
 export const checkOptions = (options: Options) => {
   let { apiKey, title, artist } = options;
