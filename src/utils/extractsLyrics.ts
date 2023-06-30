@@ -1,18 +1,21 @@
+import { isServer } from ".";
+
 let jsdom: any;
-if (typeof window != "undefined" && window.document) {
+if (isServer()) {
   async () => (jsdom = (await import("jsdom")).JSDOM);
 }
+
 /**
  * @param {string} url - Genius URL
  */
+
 async function extractsLyrics(url: string) {
   try {
     let response = await fetch(url);
     const html = await response.text();
-    const htmlDocument =
-      typeof window != "undefined" && window.document
-        ? new DOMParser().parseFromString(html, "text/html")
-        : new jsdom(html).window.document;
+    const htmlDocument = isServer()
+      ? new DOMParser().parseFromString(html, "text/html")
+      : new jsdom(html).window.document;
 
     let lyrics = htmlDocument
       .querySelector('div[class="lyrics"]')
