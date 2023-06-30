@@ -8,8 +8,8 @@ async function extractsLyrics(url: string) {
     const html = await response.text();
     const htmlDocument =
       typeof window != "undefined" && window.document
-        ? new JSDOM(html).window.document
-        : new DOMParser().parseFromString(html, "text/html");
+        ? new DOMParser().parseFromString(html, "text/html")
+        : new JSDOM(html).window.document;
 
     let lyrics = htmlDocument
       .querySelector('div[class="lyrics"]')
