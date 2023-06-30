@@ -1,6 +1,6 @@
 {
   "name": "genius-lyrics-ts",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Get lyrics from genius with Typescript, Javascript, or Node",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
