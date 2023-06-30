@@ -1,3 +1,4 @@
+import { JSDOM } from "jsdom";
 /**
  * @param {string} url - Genius URL
  */
@@ -5,8 +6,7 @@ async function extractsLyrics(url: string) {
   try {
     let response = await fetch(url);
     const html = await response.text();
-    const parser = new DOMParser();
-    const htmlDocument = parser.parseFromString(html, "text/html");
+    const htmlDocument = new JSDOM(html).window.document;
 
     let lyrics = htmlDocument
       .querySelector('div[class="lyrics"]')
