@@ -1,4 +1,4 @@
-import * as cheerio from "cheerio";
+import { load } from "cheerio";
 
 /**
  * @param {string} url - Genius URL
@@ -7,7 +7,7 @@ async function extractsLyrics(url: string) {
   try {
     let response = await fetch(url);
     const data = await response.text();
-    const $ = cheerio.load(data);
+    const $ = load(data);
     let lyrics: string = $('div[class="lyrics"]').text().trim();
     if (!lyrics) {
       lyrics = "";
