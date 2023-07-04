@@ -1,3 +1,5 @@
+import { HTMLElement } from "node-html-parser";
+
 export type Options = {
   apiKey: string;
   title?: string;
@@ -31,3 +33,16 @@ export const getTitle = (title?: string, artist?: string) => {
     .replace(/\s+/g, " ")
     .trim();
 };
+
+export function decodeHTMLEntities(element: HTMLElement, str: string) {
+  if (str && typeof str === "string") {
+    // strip script/html tags
+    str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gim, "");
+    str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gim, "");
+    element.innerHTML = str;
+    str = element.textContent as string;
+    element.textContent = "";
+  }
+
+  return str;
+}

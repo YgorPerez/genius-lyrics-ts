@@ -1,6 +1,6 @@
 {
   "name": "genius-lyrics-ts",
-  "version": "0.0.14",
+  "version": "0.1.0",
   "description": "Get lyrics from genius with Typescript, Javascript, or Node",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -24,11 +24,11 @@
   "license": "MIT",
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
-    "@types/jsdom": "^21.1.1",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "jsdom": "^22.1.0"
+    "happy-dom": "^9.20.3",
+    "node-html-parser": "^6.1.5"
   }
 }

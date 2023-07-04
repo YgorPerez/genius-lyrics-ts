@@ -1,9 +1,5 @@
-import { isServer } from ".";
-
-let jsdom: any;
-if (isServer()) {
-  async () => (jsdom = (await import("jsdom")).JSDOM);
-}
+import { parse } from "node-html-parser";
+import { decodeHTMLEntities } from ".";
 
 /**
  * @param {string} url - Genius URL
@@ -11,12 +7,9 @@ if (isServer()) {
 
 async function extractsLyrics(url: string) {
   try {
-    let response = await fetch(url);
+    const response = await fetch(url);
     const html = await response.text();
-    const htmlDocument = isServer()
-      ? new jsdom(html).window.document
-      : new DOMParser().parseFromString(html, "text/html");
-
+    const htmlDocument = parse(html);
     let lyrics = htmlDocument
       .querySelector('div[class="lyrics"]')
       ?.textContent?.trim();
@@ -25,16 +18,14 @@ async function extractsLyrics(url: string) {
       lyrics = "";
       htmlDocument
         .querySelectorAll('div[class^="Lyrics__Container"]')
-        .forEach((elem: Element) => {
+        .forEach((elem) => {
           if (elem && elem.textContent?.length !== 0) {
-            let snippet = elem.textContent
+            let snippet = elem.innerHTML
               ?.replace(/<br>/g, "\n")
-              .replace(/<(?!\s*br\s*\/?)[^>]+>/gi, "") as string;
-
-            lyrics +=
-              snippet +
-              document.querySelector("<textarea/>")?.textContent?.trim() +
-              "\n\n";
+              .replace(/<(?!\s*br\s*\/?)[^>]+>/gi, "");
+            snippet = decodeHTMLEntities(elem, snippet);
+            lyrics += snippet;
+            htmlDocument.querySelector("textarea")?.textContent + "\n\n";
           }
         });
     }
