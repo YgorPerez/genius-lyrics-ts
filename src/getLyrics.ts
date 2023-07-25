@@ -21,14 +21,15 @@ async function getLyrics({ title, artist, optimizeQuery }: searchQuery) {
     });
     const html = await response.text();
     const htmlDocument = parse(html);
+    console.log({ response, html, htmlDocument });
     let lyrics = htmlDocument
       .querySelector("[data-lyricid]")
       ?.innerText?.trim();
 
     if (!lyrics) return null;
     return lyrics;
-  } catch (e) {
-    throw e;
+  } catch (error) {
+    throw error;
   }
 }
 
