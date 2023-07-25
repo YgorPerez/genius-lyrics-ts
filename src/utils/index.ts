@@ -1,10 +1,5 @@
-export const getTitle = (title?: string, artist?: string) => {
-  const validateTitle = title ?? "";
-  const validateArtist = artist ?? "";
-  if (validateTitle === "" && validateArtist === "") {
-    return "";
-  }
-  return `${validateTitle} ${validateArtist}`
+export const getTitle = (title: string, artist?: string) => {
+  return `${title} ${artist}`
     .toLowerCase()
     .replace(/ *\([^)]*\) */g, "")
     .replace(/ *\[[^\]]*]/, "")

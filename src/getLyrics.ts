@@ -12,9 +12,7 @@ async function getLyrics({ title, artist, optimizeQuery }: searchQuery) {
     const searchUrl = "https://www.google.com/search?q=";
     !artist ? (artist = "") : null;
     const song = optimizeQuery ? getTitle(title, artist) : `${title} ${artist}`;
-    const reqUrl = `${searchUrl}${encodeURIComponent(
-      (song + " lyrics").trim()
-    )}`;
+    const reqUrl = `${searchUrl}${encodeURIComponent(song + " lyrics")}`;
 
     const response = await fetch(reqUrl);
     const html = await response.text();
