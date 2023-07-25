@@ -1,6 +1,6 @@
 {
   "name": "genius-lyrics-ts",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Get lyrics from google with Typescript, Javascript, or Node",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

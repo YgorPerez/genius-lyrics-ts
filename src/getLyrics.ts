@@ -1,10 +1,6 @@
 import { parse } from "node-html-parser";
 import { getTitle } from "./utils";
 
-/**
- * @param {string} url - Genius URL
- */
-
 export type searchQuery = {
   title: string;
   artist?: string;
