@@ -1,7 +1,7 @@
 {
-  "name": "genius-lyrics-ts",
-  "version": "0.1.0",
-  "description": "Get lyrics from genius with Typescript, Javascript, or Node",
+  "name": "google-lyrics-ts",
+  "version": "0.2.0",
+  "description": "Get lyrics from google with Typescript, Javascript, or Node",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -13,11 +13,13 @@
   "keywords": [
     "lyrics-api",
     "lyrics-ts",
+    "lyrics-js",
     "lyrics-searcher",
     "lyrics-finder",
     "edge-runtime",
     "javascript",
     "typescript",
+    "google",
     "lyrics"
   ],
   "author": "Ygor Perez de Oliveira",
